@@ -49,6 +49,4 @@ public class GatherGameData
         private set { answer = value; }
     }
 
-    }
-
 }
