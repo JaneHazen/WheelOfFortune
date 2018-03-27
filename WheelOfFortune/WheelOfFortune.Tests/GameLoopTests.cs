@@ -9,7 +9,6 @@ namespace WheelOfFortune.Tests
         [TestMethod]
         public void TestCheckIfCharGuessed()
         {
-
             // Arrange
             string[] arr = new string[4] { "a", "b", "c", "d" };
             string guess = "b";
