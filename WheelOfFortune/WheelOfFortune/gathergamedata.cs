@@ -3,7 +3,7 @@
 public class GatherGameData
 {
 
-    private string answer;
+    public string answer;
 
 
     public GatherGameData()

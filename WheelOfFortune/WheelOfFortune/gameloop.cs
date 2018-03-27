@@ -2,22 +2,23 @@
 
 public class GameLoop
 {
-	public GameLoop()
+    GatherGameData gameData;
+	public GameLoop(GatherGameData gameData)
 	{
-        //User has pressed 1 to solve
-        //Take the input from the user (entire puzzle)
-        //Compare the user's answer to the actual answer
-        Console.WriteLine("Try to solve the puzzle");
-        var fullAnswerGuess = Console.ReadKey().ToString();
-        if(fullAnswerGuess == gameData.answer)
+        this.gameData = gameData;
+	}
+    public bool AnswerCheck()
+    {
+        Console.WriteLine("To solve the puzzle, type your answer and press enter:");
+        var fullAnswerGuess = Console.ReadLine().ToString().ToUpper();
+        if (fullAnswerGuess == gameData.answer.ToUpper())
         {
             Console.WriteLine("hooray, you win!");
-        }
-        else
-        {
-            Console.WriteLine("try again!");
-            //Give user the choices again (0 quit, 1 solve, 2 spin);
+            return true;
         }
 
-	}
+            Console.WriteLine("try again!");
+            //Give user the choices again (0 quit, 1 solve, 2 spin);
+        return false;
+    }
 }

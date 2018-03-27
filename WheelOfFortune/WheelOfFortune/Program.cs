@@ -10,7 +10,10 @@ namespace WheelOfFortune
     {
         static void Main(string[] args)
         {
-            GameLoop();
+            GatherGameData test = new GatherGameData();
+            GameLoop testLoop = new GameLoop(test);
+            testLoop.AnswerCheck();
+            Console.WriteLine();
         }
     }
 }
