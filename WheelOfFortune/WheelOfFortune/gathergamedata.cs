@@ -2,7 +2,5 @@
 
 public class GatherGameData
 {
-	public Class1()
-	{
-	}
+    public string playerName { get; set; }
 }
