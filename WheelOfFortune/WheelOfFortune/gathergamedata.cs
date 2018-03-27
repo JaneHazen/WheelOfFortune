@@ -2,7 +2,7 @@
 
 public class GatherGameData
 {
-	public Class1()
+	public GatherGameData()
 	{
 	}
 }

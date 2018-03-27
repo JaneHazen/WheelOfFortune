@@ -2,7 +2,7 @@
 
 public class GameLoop
 {
-	public Class1()
+	public GameLoop()
 	{
 	}
 }
