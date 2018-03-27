@@ -4,5 +4,6 @@ public class GatherGameData
 {
 	public GatherGameData()
 	{
+
 	}
 }
