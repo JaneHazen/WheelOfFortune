@@ -10,6 +10,7 @@ namespace WheelOfFortune
     {
         static void Main(string[] args)
         {
+            GameLoop();
         }
     }
 }
