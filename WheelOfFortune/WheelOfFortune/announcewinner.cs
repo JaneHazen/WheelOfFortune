@@ -2,7 +2,7 @@
 
 public class AnnounceWinner
 {
-	public Class1()
+	public AnnounceWinner()
 	{
 	}
 }
