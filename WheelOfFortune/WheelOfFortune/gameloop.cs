@@ -60,14 +60,16 @@ namespace WheelOfFortune
             return false;
         }
 
-        public void MainGameLoop(GatherGameData gameData)
+        public void GameplayLoop()
         {
             bool InfiniteLoop = true;
 
             // each iteration is a turn
             while (InfiniteLoop == true)
             {
-                Console.WriteLine(gameData.AnswerUnder);
+                string underscores = string.Join(" ", gameData.AnswerUnder.ToArray());
+                Console.WriteLine(underscores);
+
                 Console.WriteLine("");
                 Console.WriteLine("0 to quit the game \n 1 to solve the puzzle \n 2 guess a letter");
 

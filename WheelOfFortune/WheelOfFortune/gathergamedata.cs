@@ -15,8 +15,10 @@ public class GatherGameData
     public GatherGameData()
 	{
         Answer = "Microsoft is awesome";
-        AnswerUnder = new String('_', Answer.Length);
-	}
+        AnswerUnder = new List<char>();
+        for (int i = 0; i < Answer.Length; i++)
+            AnswerUnder.Add('_');
+    }
 
     /// <summary>
     /// Asks the player for their name and reads it
