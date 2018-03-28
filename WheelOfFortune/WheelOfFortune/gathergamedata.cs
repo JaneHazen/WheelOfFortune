@@ -2,9 +2,17 @@
 
 public class GatherGameData
 {
+    private string answer;
 
     public string answer;
 
+    /// <summary>
+    /// Displays player name on the screen
+    /// </summary>
+    public void DisplayPlayerName()
+    {
+      Console.WriteLine($"Player Name : {PlayerName}");
+    }
 
     public GatherGameData()
     {
@@ -18,4 +26,7 @@ public class GatherGameData
         get { return answer; }
         private set { answer = value; }
     }
+
+    }
+
 }
