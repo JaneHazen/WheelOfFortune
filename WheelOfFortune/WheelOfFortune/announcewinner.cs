@@ -1,8 +1,12 @@
 ﻿using System;
 
-public class AnnounceWinner
+namespace WheelOfFortune
 {
-	public AnnounceWinner()
-	{
-	}
+    public class AnnounceWinner
+    {
+        public AnnounceWinner(GameLoop Data)
+        {
+            Console.WriteLine("Winner announcement");
+        }
+    }
 }
