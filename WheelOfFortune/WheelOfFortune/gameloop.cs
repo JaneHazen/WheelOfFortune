@@ -6,7 +6,10 @@ namespace WheelOfFortune
     public class GameLoop
     {
         GatherGameData gameData;
-
+        public GameLoop(GatherGameData Input)
+        {
+            gameData = Input;
+        }
         // Checks if character has already been guessed
         public bool CheckIfCharGuessed(char guessedChar, List<char> previousGuesses)
         {
