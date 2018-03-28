@@ -36,18 +36,6 @@ namespace WheelOfFortune
             string playerCharGuess = Console.ReadLine();
 
             // if char hasn't been guessed before
-            if (CheckIfCharGuessed(playerCharGuess, gameData.previousGuesses))
-            {
-
-                // HABY'S LOGIC
-                // Check for matches in answer and update underscore answer and charCount
-
-                // if char is in answer
-                if (charCount > 0)
-                {
-                    // display "There are {charCount} guessChar in the answer
-                    turnResult = $"There is/are {charCount} letter {playerCharGuess.ToUpper} in the puzzle";
-                }
-
-
+        }
+    }
 }
