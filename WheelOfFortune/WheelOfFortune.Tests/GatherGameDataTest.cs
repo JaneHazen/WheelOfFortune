@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace WheelOfFortune.Tests
@@ -35,10 +36,17 @@ namespace WheelOfFortune.Tests
         public void TestDisplayPlayerName()
         {
             //Arrange
+            var expectedOutput = "Player Name : Jupiter\r\n";
+            var sw = new StringWriter();
+            Console.SetOut(sw);
             GatherGameData data = new GatherGameData();
+            data.PlayerName = "Jupiter";
 
             //Act
             data.DisplayPlayerName();
+
+            //Assert
+            Assert.AreEqual(expectedOutput, sw.ToString());
                
         }
 
