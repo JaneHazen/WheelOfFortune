@@ -12,7 +12,7 @@ namespace WheelOfFortune
         {
             GatherGameData Input = new GatherGameData();
             GameLoop Loop = new GameLoop(Input);
-            Loop.Loop();
+            Loop.GameplayLoop();
             AnnounceWinner Winner = new AnnounceWinner(Loop);
             Console.WriteLine("End of game");
             Console.WriteLine();
