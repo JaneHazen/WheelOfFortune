@@ -22,7 +22,6 @@ namespace WheelOfFortune
             // iterate through answer to see if char is included
             for (int i = 0; i < answer.Length; i++)
             {
-                // NEED TO DEBUG; 
                 if (answer[i] == guessedChar)
                 {
                     characterCount++;
@@ -30,6 +29,15 @@ namespace WheelOfFortune
                     underscoreTemplate[i] = guessedChar;
                     //remember to verify that guessedChar has upcase 
                 }
+            }
+
+            if(characterCount > 0)
+            {
+                Console.WriteLine($"There is/are {characterCount} letter {guessedChar} in the puzzle");
+            }
+            else
+            {
+                Console.Write("Sorry, guess again");
             }
             return underscoreTemplate;
 
@@ -49,14 +57,54 @@ namespace WheelOfFortune
             return false;
         }
 
-        public void GameplayLoop()
+        public void MainGameLoop(GatherGameData gameData)
         {
             bool InfiniteLoop = true;
+
+            // each iteration is a turn
             while (InfiniteLoop == true)
             {
+                Console.WriteLine(gameData.AnswerUnder);
+                Console.WriteLine("");
+                Console.WriteLine("0 to quit the game \n 1 to solve the puzzle \n 2 guess a letter");
+
+                string turnOption = Console.ReadLine();
+
+                // quit the game
+                if(turnOption == "0")
+                {
+                    // quit game
+                }
+
+                if(turnOption == "1")
+                {
+                    AnswerCheck(gameData.Answer);
+                }
+
+                if(turnOption == "2")
+                {
+                    string guessedChar = Console.ReadLine().ToUpper();
+                    var guessedBefore = CheckIfCharGuessed(guessedChar[0], gameData.previousGuesses);
+
+                    if(guessedBefore)
+                    {
+                        // tell player to choose a char that hasn't been guessed yet
+                        Console.WriteLine();
+                    }
+                    else
+                    {
+                        ShowFoundLetters(guessedChar[0], gameData.Answer, gameData.AnswerUnder);
+                    }
+
+                }
+
+
                 // PLAYER CHOOSES TO GUESS A LETTER ----- OPTION 2
                 string playerCharGuess = Console.ReadLine();
             }
         }
+
+
+
     }
 }
