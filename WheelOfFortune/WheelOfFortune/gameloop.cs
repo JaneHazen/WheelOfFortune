@@ -1,14 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 
-public class GameLoop
+namespace WheelOfFortune
 {
-	public GameLoop(object gameData)
-	{
+    public class GameLoop
+    {
+        // Checks if character has already been guessed
+        public bool CheckIfCharGuessed(string charGuess, List<string> previousGuesses)
+        {
+            var check = previousGuesses.Contains(charGuess);
 
-	}
+            return check;
+        }
 
-    public string ShowFoundLetters(string guessedChar, string answer, string underscoreTemplate)//pass in object to modify and word to find)
-    {  
+        public GameLoop(GatherGameData gameData)
+        {
+            // PLAYER CHOOSES TO GUESS A LETTER ----- OPTION 2
+            string playerCharGuess = Console.ReadLine();
+
+        }
+
+        public string ShowFoundLetters(string guessedChar, string answer, string underscoreTemplate)//pass in object to modify and word to find)
+        {  
          var characterCount = 0;
 
         // iterate through answer to see if char is included
@@ -26,6 +39,9 @@ public class GameLoop
             }
         return underscoreTemplate;
 
+            // if char hasn't been guessed before
+        }
+    }
     }
 
-}
+
