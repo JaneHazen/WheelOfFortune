@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="announcewinner.cs" />
+    <Compile Include="wheel.cs" />
     <Compile Include="gameloop.cs" />
     <Compile Include="gathergamedata.cs" />
     <Compile Include="Program.cs" />
