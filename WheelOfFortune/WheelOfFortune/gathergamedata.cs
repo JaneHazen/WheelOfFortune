@@ -16,6 +16,8 @@ public class GatherGameData
 	{
         Answer = "Microsoft is awesome";
         AnswerUnder = new String('_', Answer.Length);
+        GetPlayerName();
+        Console.WriteLine("Starting the game...");
 	}
 
     /// <summary>
@@ -26,7 +28,6 @@ public class GatherGameData
         Console.WriteLine("Please enter your name:");
         PlayerName = ParseInput(Console.ReadLine());
     }
-
     /// <summary>
     /// For testing GetPlayerName method
     /// </summary>
