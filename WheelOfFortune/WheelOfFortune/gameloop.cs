@@ -31,7 +31,15 @@ namespace WheelOfFortune
         return false;
     }
     //*************
-
+    public void Loop()
+        {
+            bool InfiniteLoop = true;
+            while (InfiniteLoop == true)
+            {
+                this.AnswerCheck();
+            }
+            
+        }
     public GameLoop(GatherGameData gameData)
         {
             // PLAYER CHOOSES TO GUESS A LETTER ----- OPTION 2
