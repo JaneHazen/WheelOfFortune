@@ -18,6 +18,20 @@ namespace WheelOfFortune
             // PLAYER CHOOSES TO GUESS A LETTER ----- OPTION 2
             string playerCharGuess = Console.ReadLine();
 
+
+        // Checks if character has already been guessed
+        public bool CheckIfCharGuessed(string charGuess, List<string> previousGuesses)
+        {
+            var check = previousGuesses.Contains(charGuess);
+
+            return check;
+        }
+
+        public GameLoop(GatherGameData gameData)
+        {
+            // PLAYER CHOOSES TO GUESS A LETTER ----- OPTION 2
+            string playerCharGuess = Console.ReadLine();
+
         }
 
         public string ShowFoundLetters(string guessedChar, string answer, string underscoreTemplate)//pass in object to modify and word to find)
@@ -42,6 +56,4 @@ namespace WheelOfFortune
             // if char hasn't been guessed before
         }
     }
-    }
-
-
+}
