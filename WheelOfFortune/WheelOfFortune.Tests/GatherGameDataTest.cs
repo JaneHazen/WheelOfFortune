@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace WheelOfFortune.Tests
@@ -21,11 +22,14 @@ namespace WheelOfFortune.Tests
         [TestMethod]
         public void TestGatherGameDataDefault()
         {
+            //arrange
             Init();
 
-            GatherGameData data = new GatherGameData();
+            //act
+            var actual = GameData.Answer;
 
-            Assert.AreEqual(data.Answer, Answer);
+            //assert
+            Assert.AreEqual(Answer, actual);
         }
 
         [TestMethod]
@@ -65,12 +69,18 @@ namespace WheelOfFortune.Tests
 
         [TestMethod]
         public void TestDisplayUnderWordConsole()
-        {    
+        {   
+            //arrange
             Init();
+            var expectedOut = "Puzzle is: " + AnswerUnder;
+            var sw = new StringWriter();
+            Console.SetOut(sw);
 
-            GatherGameData data = new GatherGameData();
+            //act
+            GameData.DisplayUnderWordConsole();
 
-            data.DisplayUnderWordConsole();
+            //assert
+            Assert.AreEqual(expectedOut, sw.ToString());
         }
 
 

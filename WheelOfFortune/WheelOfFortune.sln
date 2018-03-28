@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WheelOfFortune", "WheelOfFo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WheelOfFortune.Tests", "WheelOfFortune.Tests\WheelOfFortune.Tests.csproj", "{DB94A2F9-30BF-4C4F-9643-0A479C76327E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{87C9BEB0-2E0C-426B-9700-F54325769682}"
+	ProjectSection(SolutionItems) = preProject
+		WheelOfFortune\announcewinner.cs = WheelOfFortune\announcewinner.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class GatherGameData
 {
     public string Answer { get; private set; }
     public string AnswerUnder { get; set; }
     public string PlayerName { get; set; }
+    public List<string> previousGuesses;
+    int winner;
 
     /// <summary>
     /// Gathers initial game data 
@@ -50,7 +53,5 @@ public class GatherGameData
     public void DisplayUnderWordConsole()
     {
         Console.WriteLine("Puzzle is: " + AnswerUnder);
-    } 
     }
-
 }
