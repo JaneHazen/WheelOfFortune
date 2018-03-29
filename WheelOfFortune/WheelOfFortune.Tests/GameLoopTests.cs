@@ -20,7 +20,7 @@ namespace WheelOfFortune.Tests
         //}
 
         [TestMethod]
-        public void TestAnswerCheck()
+        public void TestCheckIfCharGuessed()
         {
             // Arrange
             List<char> list = new List<char> { 'a', 'b', 'c', 'c' };
@@ -35,6 +35,40 @@ namespace WheelOfFortune.Tests
             // Assert
             Assert.IsTrue(checkTrue);
             Assert.IsFalse(checkFalse);
+        }
+
+        [TestMethod]
+        public void TestAnswerCheckTrue()
+        {
+            // arrange
+            GameLoop loop = new GameLoop(null);
+            var answer = "string";
+            var correctGuess = "string";
+            var sr = new StringReader(correctGuess);
+            Console.SetIn(sr);
+
+            // act
+            var result = loop.AnswerCheck(answer);
+
+            // assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void TestAnswerCheckFalse()
+        {
+            // arrange
+            GameLoop loop = new GameLoop(null);
+            var answer = "string";
+            var incorrectGuess = "wrong";
+            var sr = new StringReader(incorrectGuess);
+            Console.SetIn(sr);
+
+            // act
+            var result = loop.AnswerCheck(answer);
+
+            // assert
+            Assert.IsFalse(result);
         }
 
         //[TestMethod]
