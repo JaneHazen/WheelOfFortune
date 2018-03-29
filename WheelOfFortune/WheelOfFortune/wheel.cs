@@ -75,13 +75,14 @@ namespace WheelOfFortune
         {
             List<List<string>> wheel = initWheel();
             int x = -1;
+            rotations = rotations / 2;
             int sleepValue = rotations + 30;
             int rotationDegredation = rotations;
             while (++x < rotations)
             {
                 AnimateRotation(wheel, sleepValue, rotationDegredation);
                 rotationDegredation--;
-                sleepValue += (rotationDegredation * rotationDegredation) / 35;
+                sleepValue += 10;
             }
         }
         private void AnimateRotation(List<List<string>> wheel, int sleepValue, int rotations)
