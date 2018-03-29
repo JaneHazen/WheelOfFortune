@@ -14,8 +14,10 @@ public class GatherGameData
     /// </summary>
     public GatherGameData()
 	{
+        GetPlayerName();
         Answer = "MICROSOFT IS AWESOME";
         Console.WriteLine("Starting the game...");
+        DisplayPlayerName();
         AnswerUnder = new List<char>();
         for (int i = 0; i < Answer.Length; i++)
             AnswerUnder.Add('_');
