@@ -1,20 +1,44 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
+using System.Timers;
 
 namespace WheelOfFortune
 {
     public class GameLoop
     {
         GatherGameData gameData;
+        Wheel          wheel;
+        int            wheelRotations;
         public GameLoop(GatherGameData Input)
         {
             gameData = Input;
+            wheel = new Wheel(25);
         }
+
+        // waits 3 seconds before closing the terminal
+        public void ExitGame()
+        {
+            bool wait = true;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            while(wait)
+            {
+                if (sw.ElapsedMilliseconds > 3000)
+                    wait = false;
+            }
+            Environment.Exit(0);
+        }
+
         // Checks if character has already been guessed
         public bool CheckIfCharGuessed(char guessedChar, List<char> previousGuesses)
         {
-            bool check = false;
-            check = previousGuesses.Contains(guessedChar);
+            // checks if letter has already been guessed
+            bool check = previousGuesses.Contains(guessedChar);
+            // adds letter to list of guesses
             previousGuesses.Add(guessedChar);
 
             return check;
@@ -36,6 +60,7 @@ namespace WheelOfFortune
                 }
             }
 
+            // Display the appropriate string based off the characterCount
             if(characterCount > 0)
             {
                 Console.WriteLine($"There is/are {characterCount} letter {guessedChar} in the puzzle \n");
@@ -45,7 +70,6 @@ namespace WheelOfFortune
                 Console.Write("Sorry, guess again \n");
             }
             return underscoreTemplate;
-
         }
 
         public bool AnswerCheck(string answer)
@@ -70,21 +94,26 @@ namespace WheelOfFortune
             // each iteration is a turn
             while (InfiniteLoop == true)
             {
-
+                this.wheelRotations = this.wheel.PreSpinAnimation();
+                this.wheel.SpinAnimation(this.wheelRotations);
                 Console.WriteLine("######################################################################\n");
                 Console.WriteLine("Word to guess:");
-                string underscores = string.Join(" ", gameData.AnswerUnder.ToArray());
-                Console.WriteLine(underscores);
 
+                // Prints underscores for puzzle
+                foreach(char letter in gameData.AnswerUnder)
+                {
+                    Console.Write(letter);
+                    Console.Write(" ");
+                }
+
+                // Displey options for turn
                 Console.WriteLine("");
                 Console.WriteLine(" 0 to quit the game \n 1 to solve the puzzle \n 2 guess a letter \n\n");
-
                 string turnOption = Console.ReadLine();
 
-                // quit the game
+                // QUITS THE GAME
                 if(turnOption == "0")
                 {
-                    // quit game
                     InfiniteLoop = false;
                 }
 
@@ -118,20 +147,14 @@ namespace WheelOfFortune
                         {
                             ShowFoundLetters(guessedChar[0], gameData.Answer, gameData.AnswerUnder);
                         }
-
                     } else
                     {
                         Console.WriteLine("Please enter a vaild letter \n");
                     }
-
-
                 }
             }
 
-            //Console.WriteLine("Hooray, you won!");
-            Console.WriteLine("Would you like to play agian? (y/n) \n");
-            string playAgain = Console.ReadLine();
-
+            ExitGame();
         }
     }
 }
