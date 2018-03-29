@@ -92,7 +92,7 @@ namespace WheelOfFortune
                 this.wheelRotations = this.wheel.PreSpinAnimation();
                 this.wheel.SpinAnimation(this.wheelRotations);
                 Console.WriteLine("######################################################################\n");
-                Console.WriteLine("Word to guess:");
+                Console.WriteLine("Word to guess: \n");
 
                 // Prints underscores for puzzle
                 foreach(char letter in gameData.AnswerUnder)
@@ -100,11 +100,17 @@ namespace WheelOfFortune
                     Console.Write(letter);
                     Console.Write(" ");
                 }
+                Console.WriteLine("\n");
 
                 // Displey options for turn
                 Console.WriteLine("");
                 Console.WriteLine(" 0 to quit the game \n 1 to solve the puzzle \n 2 guess a letter \n\n");
                 string turnOption = Console.ReadLine();
+
+                if(turnOption != "0" || turnOption != "1" || turnOption != "2")
+                {
+                    Console.WriteLine("Please enter a valid option");
+                }
 
                 // QUITS THE GAME
                 if(turnOption == "0")
