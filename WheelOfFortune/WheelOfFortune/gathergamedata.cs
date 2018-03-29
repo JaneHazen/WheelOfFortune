@@ -4,9 +4,9 @@ using System.Collections.Generic;
 public class GatherGameData
 {
     public string Answer { get; private set; }
-    public string AnswerUnder { get; set; }
+    public List<char> AnswerUnder { get; set; }
     public string PlayerName { get; set; }
-    public List<string> previousGuesses;
+    public List<char> previousGuesses;
     int winner;
 
     /// <summary>
@@ -15,10 +15,11 @@ public class GatherGameData
     public GatherGameData()
 	{
         Answer = "Microsoft is awesome";
-        AnswerUnder = new String('_', Answer.Length);
-        GetPlayerName();
         Console.WriteLine("Starting the game...");
-	}
+        AnswerUnder = new List<char>();
+        for (int i = 0; i < Answer.Length; i++)
+            AnswerUnder.Add('_');
+    }
 
     /// <summary>
     /// Asks the player for their name and reads it
