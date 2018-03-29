@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace WheelOfFortune.Tests
@@ -24,6 +25,27 @@ namespace WheelOfFortune.Tests
             Assert.IsTrue(checkTrue);
             Assert.IsFalse(checkFalse);
         }
+
+        //[TestMethod]
+        //public void TestGameplayLoopOption1()
+        //{
+
+        //    // Arrange
+        //    var expected = "1";
+        //    var sr = new StringReader(expected);
+        //    Console.SetIn(sr);
+
+        //    GatherGameData data = new GatherGameData();
+        //    GameLoop loop = new GameLoop(data);
+
+        //    // Act
+        //    loop.GameplayLoop();
+
+        //    // Assert
+        //    Assert.AreEqual(expected, sr.ToString());
+
+
+        //}
 
     }
 }
