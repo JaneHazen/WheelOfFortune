@@ -55,4 +55,5 @@ public class GatherGameData
     public void DisplayUnderWordConsole()
     {
         Console.WriteLine("Puzzle is: " + AnswerUnder);
+    }
 }
