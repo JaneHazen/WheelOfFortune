@@ -9,9 +9,12 @@ namespace WheelOfFortune
     public class GameLoop
     {
         GatherGameData gameData;
+        Wheel          wheel;
+        int            wheelRotations;
         public GameLoop(GatherGameData Input)
         {
             gameData = Input;
+            wheel = new Wheel(25);
         }
 
         // waits 3 seconds before closing the terminal
@@ -90,7 +93,8 @@ namespace WheelOfFortune
             // each iteration is a turn
             while (InfiniteLoop == true)
             {
-
+                this.wheelRotations = this.wheel.PreSpinAnimation();
+                this.wheel.SpinAnimation(this.wheelRotations);
                 Console.WriteLine("######################################################################\n");
                 Console.WriteLine("Word to guess:");
 

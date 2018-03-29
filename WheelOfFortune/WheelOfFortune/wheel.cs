@@ -75,13 +75,13 @@ namespace WheelOfFortune
         {
             List<List<string>> wheel = initWheel();
             int x = -1;
-            int sleepValue = rotations;
+            int sleepValue = rotations + 30;
             int rotationDegredation = rotations;
             while (++x < rotations)
             {
                 AnimateRotation(wheel, sleepValue, rotationDegredation);
                 rotationDegredation--;
-                sleepValue += (int)Math.Sqrt(rotations) + (rotations * rotations / 10);
+                sleepValue += (rotationDegredation * rotationDegredation) / 35;
             }
         }
         private void AnimateRotation(List<List<string>> wheel, int sleepValue, int rotations)
@@ -89,7 +89,6 @@ namespace WheelOfFortune
             int x = -1;
             while (++x < wheel.Count)
             {
-                Console.WriteLine("Rotation count: " + rotations);
                 int y = -1;
                 while (++y < wheel[x].Count)
                 {
