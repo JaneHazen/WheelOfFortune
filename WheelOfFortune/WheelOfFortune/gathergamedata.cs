@@ -16,9 +16,14 @@ public class GatherGameData
 	{
         Answer = "MICROSOFT IS AWESOME";
         Console.WriteLine("Starting the game...");
+
         AnswerUnder = new List<char>();
         for (int i = 0; i < Answer.Length; i++)
-            AnswerUnder.Add('_');
+            if(Answer[i] == ' ')
+                AnswerUnder.Add(' ');
+            else
+                AnswerUnder.Add('_');
+
         previousGuesses = new List<char>();
     }
 
