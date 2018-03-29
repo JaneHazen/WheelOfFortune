@@ -62,26 +62,21 @@ namespace WheelOfFortune
 
             // Display the appropriate string based off the characterCount
             if(characterCount > 0)
-            {
                 Console.WriteLine($"There is/are {characterCount} letter {guessedChar} in the puzzle \n");
-            }
             else
-            {
                 Console.Write("Sorry, guess again \n");
-            }
+
             return underscoreTemplate;
         }
 
-        public bool AnswerCheck(string answer)
+        public bool AnswerCheck(string answer, bool winner)
         {
             Console.WriteLine("To solve the puzzle, type your answer and press enter:");
             var fullAnswerGuess = Console.ReadLine().ToString().ToUpper();
             if (fullAnswerGuess == answer.ToUpper())
             {
-                Console.WriteLine("hooray, you win!");
                 return true;
-            }
-            Console.WriteLine("try again!");
+            }            
             //Give user the choices again (0 quit, 1 solve, 2 spin);
             return false;
         }
@@ -120,10 +115,11 @@ namespace WheelOfFortune
                 // GUESS COMPLETE WORD
                 if(turnOption == "1")
                 {
-                    bool winner = AnswerCheck(gameData.Answer);
+                    bool winner = AnswerCheck(gameData.Answer, gameData.winner);
 
                     if(winner == true)
                     {
+                        gameData.winner = true;
                         InfiniteLoop = false;
                     }
                 }
@@ -153,6 +149,11 @@ namespace WheelOfFortune
                     }
                 }
             }
+
+            if(gameData.winner == true)
+                Console.WriteLine("\r\n  _    _                                                                         _ \r\n | |  | |                                                                       | |\r\n | |__| | ___   ___  _ __ __ _ _   _     _   _  ___  _   _  __      _____  _ __ | |\r\n |  __  |/ _ \\ / _ \\| '__/ _` | | | |   | | | |/ _ \\| | | | \\ \\ /\\ / / _ \\| '_ \\| |\r\n | |  | | (_) | (_) | | | (_| | |_| |_  | |_| | (_) | |_| |  \\ V  V / (_) | | | |_|\r\n |_|  |_|\\___/ \\___/|_|  \\__,_|\\__, ( )  \\__, |\\___/ \\__,_|   \\_/\\_/ \\___/|_| |_(_)\r\n                                __/ |/    __/ |                                    \r\n                               |___/     |___/ ");
+            if(gameData.winner == false)
+                Console.WriteLine("\r\n _____                 _        _                _ \r\n|  __ \\               | |      | |              | |\r\n| |  \\/ ___   ___   __| |______| |__  _   _  ___| |\r\n| | __ / _ \\ / _ \\ / _` |______| '_ \\| | | |/ _ \\ |\r\n| |_\\ \\ (_) | (_) | (_| |      | |_) | |_| |  __/_|\r\n \\____/\\___/ \\___/ \\__,_|      |_.__/ \\__, |\\___(_)\r\n                                       __/ |       \r\n                                      |___/ ");
 
             ExitGame();
         }
