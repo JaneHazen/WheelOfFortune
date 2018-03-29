@@ -7,7 +7,7 @@ public class GatherGameData
     public List<char> AnswerUnder { get; set; }
     public string PlayerName { get; set; }
     public List<char> previousGuesses { get; set; }
-    int winner;
+    public bool winner;
 
     /// <summary>
     /// Gathers initial game data 
@@ -26,6 +26,7 @@ public class GatherGameData
                 AnswerUnder.Add('_');
 
         previousGuesses = new List<char>();
+        winner = false;
     }
 
     /// <summary>
