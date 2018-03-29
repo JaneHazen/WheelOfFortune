@@ -69,12 +69,12 @@ namespace WheelOfFortune.Tests
 
             //Assert
             Assert.AreEqual(expectedOutput, sw.ToString());
-               
+
         }
 
         [TestMethod]
         public void TestDisplayUnderWordConsole()
-        {    
+        {
             Init();
 
             GatherGameData data = new GatherGameData();

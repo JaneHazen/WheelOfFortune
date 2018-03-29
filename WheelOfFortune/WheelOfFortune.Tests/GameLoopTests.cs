@@ -8,6 +8,17 @@ namespace WheelOfFortune.Tests
     [TestClass]
     public class GameLoopTests
     {
+        //[TestMethod]
+        //public void TestCheckIfCharGuessed()
+        //{
+        //    // Arrange
+        //    string[] arr = new string[4] { "a", "b", "c", "d" };
+        //    string guess = "b";
+
+        //    // Act
+            
+        //}
+
         [TestMethod]
         public void TestCheckIfCharGuessed()
         {
@@ -24,6 +35,40 @@ namespace WheelOfFortune.Tests
             // Assert
             Assert.IsTrue(checkTrue);
             Assert.IsFalse(checkFalse);
+        }
+
+        [TestMethod]
+        public void TestAnswerCheckTrue()
+        {
+            // arrange
+            GameLoop loop = new GameLoop(null);
+            var answer = "string";
+            var correctGuess = "string";
+            var sr = new StringReader(correctGuess);
+            Console.SetIn(sr);
+
+            // act
+            var result = loop.AnswerCheck(answer);
+
+            // assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public void TestAnswerCheckFalse()
+        {
+            // arrange
+            GameLoop loop = new GameLoop(null);
+            var answer = "string";
+            var incorrectGuess = "wrong";
+            var sr = new StringReader(incorrectGuess);
+            Console.SetIn(sr);
+
+            // act
+            var result = loop.AnswerCheck(answer);
+
+            // assert
+            Assert.IsFalse(result);
         }
 
         //[TestMethod]
