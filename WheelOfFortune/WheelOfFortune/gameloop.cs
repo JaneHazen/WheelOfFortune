@@ -106,6 +106,8 @@ namespace WheelOfFortune
                 Console.WriteLine("");
                 Console.WriteLine(" 0 to quit the game \n 1 to solve the puzzle \n 2 guess a letter \n\n");
                 string turnOption = Console.ReadLine();
+              
+        
 
                 if(turnOption != "0" || turnOption != "1" || turnOption != "2")
                 {
@@ -113,7 +115,7 @@ namespace WheelOfFortune
                 }
 
                 // QUITS THE GAME
-                if(turnOption == "0")
+               if (turnOption == "0")
                 {
                     InfiniteLoop = false;
                 }
@@ -153,6 +155,10 @@ namespace WheelOfFortune
                     {
                         Console.WriteLine("Please enter a vaild letter \n");
                     }
+                }
+                else
+                {
+                    Console.WriteLine("Please choose 0 1 or 2 only.");
                 }
             }
 
