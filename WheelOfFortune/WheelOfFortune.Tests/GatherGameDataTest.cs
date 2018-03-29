@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic; 
 using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -8,12 +9,12 @@ namespace WheelOfFortune.Tests
     public class TestGatherGameData
     {
         string Answer;
-        string AnswerUnder;
+        List<char> AnswerUnder;
         string DisplayAnswerUnder;
         public void Init()
         {
             Answer = "Microsoft is awesome";
-            AnswerUnder = new String('_', Answer.Length);
+            AnswerUnder = new List<char>();
             DisplayAnswerUnder = "Puzzle is: " + AnswerUnder;
         }
 
@@ -71,14 +72,19 @@ namespace WheelOfFortune.Tests
         {   
             //arrange
             Init();
-            string input = $"Puzzle is: {AnswerUnder}";
-            var expectedOut = $"Puzzle is: {AnswerUnder}\r\n";
+            foreach (char c in Answer)
+            {
+                AnswerUnder.Add(c);
+            }
+
+            var expectedOut = "Starting the game...\r\nPuzzle is: " + Answer;
             var sw = new StringWriter();
             Console.SetOut(sw);
+            GatherGameData data = new GatherGameData();
 
             //act
-            GatherGameData data = new GatherGameData();
             data.DisplayUnderWordConsole();
+            //GatherGameData.DisplayUnderWordConsole();
 
             //assert
             Assert.AreEqual(expectedOut, sw.ToString());
