@@ -15,7 +15,7 @@ namespace WheelOfFortune
             Loop.GameplayLoop();
             AnnounceWinner Winner = new AnnounceWinner(Loop);
             Console.WriteLine("End of game");
-            Console.WriteLine();
+            Console.ReadLine();
         }
     }
 }
