@@ -20,7 +20,11 @@ public class GatherGameData
         DisplayPlayerName();
         AnswerUnder = new List<char>();
         for (int i = 0; i < Answer.Length; i++)
-            AnswerUnder.Add('_');
+            if(Answer[i] == ' ')
+                AnswerUnder.Add(' ');
+            else
+                AnswerUnder.Add('_');
+
         previousGuesses = new List<char>();
     }
 
