@@ -16,7 +16,6 @@ public class GatherGameData
 	{
         GetPlayerName();
         Answer = "MICROSOFT IS AWESOME";
-        Console.WriteLine("Starting the game...");
         DisplayPlayerName();
         AnswerUnder = new List<char>();
         for (int i = 0; i < Answer.Length; i++)
@@ -54,7 +53,7 @@ public class GatherGameData
     /// </summary>
     public void DisplayPlayerName()
     {
-      Console.WriteLine($"Player Name : {PlayerName}");
+      Console.WriteLine($"Player Name: {PlayerName} \n");
     }
 
     /// <summary>
