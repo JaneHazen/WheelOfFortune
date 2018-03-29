@@ -150,9 +150,6 @@ namespace WheelOfFortune
             }
 
             ExitGame();
-
-            // Console.WriteLine("Would you like to play agian? (y/n) \n");
-            // string playAgain = Console.ReadLine();
         }
     }
 }
