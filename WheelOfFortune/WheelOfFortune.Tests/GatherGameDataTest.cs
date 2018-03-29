@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic; 
 using System.IO;
+using System.Collections.Generic; 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace WheelOfFortune.Tests
@@ -22,14 +22,13 @@ namespace WheelOfFortune.Tests
         public void TestGatherGameDataDefault()
         {
             //arrange
-            //Init();
-            var answer = "Microsoft is awesome";
+            Init();
 
             //act
             GatherGameData data = new GatherGameData();
 
             //assert
-            Assert.AreEqual(answer, data.Answer);
+            Assert.AreEqual(Answer, data.Answer);
         }
 
         [TestMethod]
@@ -61,10 +60,18 @@ namespace WheelOfFortune.Tests
         public void TestDisplayPlayerName()
         {
             //Arrange
+            var expectedOutput = "Player Name : Jupiter\r\n";
+            var sw = new StringWriter();
+            Console.SetOut(sw);
             GatherGameData data = new GatherGameData();
+            data.PlayerName = "Jupiter";
 
             //Act
             data.DisplayPlayerName();
+
+            //Assert
+            Assert.AreEqual(expectedOutput, sw.ToString());
+               
         }
 
         [TestMethod]
@@ -84,7 +91,6 @@ namespace WheelOfFortune.Tests
 
             //act
             data.DisplayUnderWordConsole();
-            //GatherGameData.DisplayUnderWordConsole();
 
             //assert
             Assert.AreEqual(expectedOut, sw.ToString());

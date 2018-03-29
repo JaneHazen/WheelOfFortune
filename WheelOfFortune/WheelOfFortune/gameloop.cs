@@ -13,7 +13,9 @@ namespace WheelOfFortune
         // Checks if character has already been guessed
         public bool CheckIfCharGuessed(char guessedChar, List<char> previousGuesses)
         {
-            var check = previousGuesses.Contains(guessedChar);
+            bool check = false;
+            check = previousGuesses.Contains(guessedChar);
+            previousGuesses.Add(guessedChar);
 
             return check;
         }
@@ -36,11 +38,11 @@ namespace WheelOfFortune
 
             if(characterCount > 0)
             {
-                Console.WriteLine($"There is/are {characterCount} letter {guessedChar} in the puzzle");
+                Console.WriteLine($"There is/are {characterCount} letter {guessedChar} in the puzzle \n");
             }
             else
             {
-                Console.Write("Sorry, guess again");
+                Console.Write("Sorry, guess again \n");
             }
             return underscoreTemplate;
 
@@ -60,6 +62,7 @@ namespace WheelOfFortune
             return false;
         }
 
+        // MAIN GAMEPLAY LOOP
         public void GameplayLoop()
         {
             bool InfiniteLoop = true;
@@ -67,11 +70,14 @@ namespace WheelOfFortune
             // each iteration is a turn
             while (InfiniteLoop == true)
             {
+
+                Console.WriteLine("######################################################################\n");
+                Console.WriteLine("Word to guess:");
                 string underscores = string.Join(" ", gameData.AnswerUnder.ToArray());
                 Console.WriteLine(underscores);
 
                 Console.WriteLine("");
-                Console.WriteLine("0 to quit the game \n 1 to solve the puzzle \n 2 guess a letter");
+                Console.WriteLine(" 0 to quit the game \n 1 to solve the puzzle \n 2 guess a letter \n\n");
 
                 string turnOption = Console.ReadLine();
 
@@ -79,37 +85,53 @@ namespace WheelOfFortune
                 if(turnOption == "0")
                 {
                     // quit game
+                    InfiniteLoop = false;
                 }
 
+                // GUESS COMPLETE WORD
                 if(turnOption == "1")
                 {
-                    AnswerCheck(gameData.Answer);
+                    bool winner = AnswerCheck(gameData.Answer);
+
+                    if(winner == true)
+                    {
+                        InfiniteLoop = false;
+                    }
                 }
 
+                // GUESS A LETTER
                 if(turnOption == "2")
                 {
+                    Console.WriteLine("Enter a letter to guess:");
                     string guessedChar = Console.ReadLine().ToUpper();
-                    var guessedBefore = CheckIfCharGuessed(guessedChar[0], gameData.previousGuesses);
 
-                    if(guessedBefore)
+                    if(guessedChar.Length == 1 || Char.IsLetter(guessedChar[0]))
                     {
-                        // tell player to choose a char that hasn't been guessed yet
-                        Console.WriteLine();
-                    }
-                    else
+                        var guessedBefore = CheckIfCharGuessed(guessedChar[0], gameData.previousGuesses);
+
+                        if(guessedBefore)
+                        {
+                            // tell player to choose a char that hasn't been guessed yet
+                            Console.WriteLine("That letter has already been guessed \n");
+                        }
+                        else
+                        {
+                            ShowFoundLetters(guessedChar[0], gameData.Answer, gameData.AnswerUnder);
+                        }
+
+                    } else
                     {
-                        ShowFoundLetters(guessedChar[0], gameData.Answer, gameData.AnswerUnder);
+                        Console.WriteLine("Please enter a vaild letter \n");
                     }
+
 
                 }
-
-
-                // PLAYER CHOOSES TO GUESS A LETTER ----- OPTION 2
-                string playerCharGuess = Console.ReadLine();
             }
+
+            //Console.WriteLine("Hooray, you won!");
+            Console.WriteLine("Would you like to play agian? (y/n) \n");
+            string playAgain = Console.ReadLine();
+
         }
-
-
-
     }
 }

@@ -6,7 +6,7 @@ public class GatherGameData
     public string Answer { get; private set; }
     public List<char> AnswerUnder { get; set; }
     public string PlayerName { get; set; }
-    public List<char> previousGuesses;
+    public List<char> previousGuesses { get; set; }
     int winner;
 
     /// <summary>
@@ -14,11 +14,18 @@ public class GatherGameData
     /// </summary>
     public GatherGameData()
 	{
-        Answer = "Microsoft is awesome";
+        GetPlayerName();
+        Answer = "MICROSOFT IS AWESOME";
         Console.WriteLine("Starting the game...");
+        DisplayPlayerName();
         AnswerUnder = new List<char>();
         for (int i = 0; i < Answer.Length; i++)
-            AnswerUnder.Add('_');
+            if(Answer[i] == ' ')
+                AnswerUnder.Add(' ');
+            else
+                AnswerUnder.Add('_');
+
+        previousGuesses = new List<char>();
     }
 
     /// <summary>
