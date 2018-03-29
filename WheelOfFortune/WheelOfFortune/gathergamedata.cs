@@ -61,6 +61,11 @@ public class GatherGameData
     /// </summary>
     public void DisplayUnderWordConsole()
     {
-        Console.WriteLine("Puzzle is: " + AnswerUnder);
+
+        Console.Write("Puzzle is: ");
+        foreach(char c in Answer)
+        {
+            Console.Write(c);
+        }
     }
 }
