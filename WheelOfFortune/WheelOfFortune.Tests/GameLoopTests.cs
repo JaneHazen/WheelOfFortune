@@ -25,10 +25,5 @@ namespace WheelOfFortune.Tests
             Assert.IsFalse(checkFalse);
         }
 
-        [TestMethod]
-        public void TestGameplayLoop()
-        {
-
-        }
     }
 }
