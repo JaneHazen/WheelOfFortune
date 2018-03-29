@@ -34,6 +34,8 @@ namespace WheelOfFortune.Tests
         {
             //Arrange
             var expectedPlayerName = "Asawari";
+            var sr = new StringReader("Jupiter");
+            Console.SetIn(sr);
             GatherGameData data = new GatherGameData();
 
             //Act
@@ -48,6 +50,8 @@ namespace WheelOfFortune.Tests
         public void TestGetPlayerNameInputValidation()
         {
             //Arrange
+            var sr = new StringReader("Jupiter");
+            Console.SetIn(sr);
             GatherGameData data = new GatherGameData();
 
             //Act
@@ -58,9 +62,12 @@ namespace WheelOfFortune.Tests
         public void TestDisplayPlayerName()
         {
             //Arrange
-            var expectedOutput = "Player Name : Jupiter\r\n";
+            var expectedOutput = "Please enter your name:\r\nStarting the game...\r\nPlayer Name : Jupiter\r\nPlayer Name : Jupiter\r\n";
+                //"Player Name : Jupiter\r\n";
             var sw = new StringWriter();
             Console.SetOut(sw);
+            var sr = new StringReader("Jupiter");
+            Console.SetIn(sr);
             GatherGameData data = new GatherGameData();
             data.PlayerName = "Jupiter";
 
