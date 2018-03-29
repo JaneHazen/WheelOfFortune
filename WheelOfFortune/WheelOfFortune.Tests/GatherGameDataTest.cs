@@ -76,7 +76,7 @@ namespace WheelOfFortune.Tests
         public void TestDisplayPlayerName()
         {
             //Arrange
-            var expectedOutput = "Please enter your name:\r\nStarting the game...\r\nPlayer Name : Jupiter\r\nPlayer Name : Jupiter\r\n";
+            var expectedOutput = "Please enter your name:\r\nPlayer Name: Jupiter \n\r\nPlayer Name: Jupiter \n\r\n";
             var sw = new StringWriter();
             Console.SetOut(sw);
             var sr = new StringReader("Jupiter");
@@ -98,7 +98,7 @@ namespace WheelOfFortune.Tests
             //arrange
             Init();
 
-            var expectedOut = "Please enter your name:\r\nStarting the game...\r\nPlayer Name : Jupiter\r\nPuzzle is: " + Answer;
+            var expectedOut = "Please enter your name:\r\nPlayer Name: Jupiter \n\r\nPuzzle is: " + Answer;
             var sw = new StringWriter();
             Console.SetOut(sw);
             GatherGameData data = new GatherGameData();
