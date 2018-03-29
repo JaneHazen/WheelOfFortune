@@ -10,26 +10,25 @@ namespace WheelOfFortune.Tests
         string Answer;
         string AnswerUnder;
         string DisplayAnswerUnder;
-        GatherGameData GameData;
         public void Init()
         {
             Answer = "Microsoft is awesome";
             AnswerUnder = new String('_', Answer.Length);
             DisplayAnswerUnder = "Puzzle is: " + AnswerUnder;
-            GameData = new GatherGameData();
         }
 
         [TestMethod]
         public void TestGatherGameDataDefault()
         {
             //arrange
-            Init();
+            //Init();
+            var answer = "Microsoft is awesome";
 
             //act
-            var actual = GameData.Answer;
+            GatherGameData data = new GatherGameData();
 
             //assert
-            Assert.AreEqual(Answer, actual);
+            Assert.AreEqual(answer, data.Answer);
         }
 
         [TestMethod]
@@ -72,12 +71,14 @@ namespace WheelOfFortune.Tests
         {   
             //arrange
             Init();
-            var expectedOut = "Puzzle is: " + AnswerUnder;
+            string input = $"Puzzle is: {AnswerUnder}";
+            var expectedOut = $"Puzzle is: {AnswerUnder}\r\n";
             var sw = new StringWriter();
             Console.SetOut(sw);
 
             //act
-            GameData.DisplayUnderWordConsole();
+            GatherGameData data = new GatherGameData();
+            data.DisplayUnderWordConsole();
 
             //assert
             Assert.AreEqual(expectedOut, sw.ToString());

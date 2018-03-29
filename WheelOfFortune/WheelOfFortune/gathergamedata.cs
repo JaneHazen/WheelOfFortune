@@ -53,6 +53,6 @@ public class GatherGameData
     /// </summary>
     public void DisplayUnderWordConsole()
     {
-        Console.WriteLine("Puzzle is: " + AnswerUnder);
+        Console.WriteLine($"Puzzle is: {AnswerUnder}");
     }
 }
