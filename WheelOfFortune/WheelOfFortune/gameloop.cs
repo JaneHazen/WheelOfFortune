@@ -13,9 +13,18 @@ namespace WheelOfFortune
         // Checks if character has already been guessed
         public bool CheckIfCharGuessed(char guessedChar, List<char> previousGuesses)
         {
-            var check = previousGuesses.Contains(guessedChar);
+            bool check = false;
+            if(previousGuesses != null)
+            {
+                check = previousGuesses.Contains(guessedChar);
 
+            } 
+            else
+            {
+                previousGuesses.Add(guessedChar);
+            }
             return check;
+
         }
 
         public List<char> ShowFoundLetters(char guessedChar, string answer, List<char> underscoreTemplate)//pass in object to modify and word to find)
@@ -60,13 +69,16 @@ namespace WheelOfFortune
             return false;
         }
 
+        // MAIN GAMEPLAY LOOP
         public void GameplayLoop()
         {
             bool InfiniteLoop = true;
+            Console.WriteLine("********************************************");
 
             // each iteration is a turn
             while (InfiniteLoop == true)
             {
+                Console.WriteLine("Word to guess:");
                 string underscores = string.Join(" ", gameData.AnswerUnder.ToArray());
                 Console.WriteLine(underscores);
 
@@ -79,21 +91,31 @@ namespace WheelOfFortune
                 if(turnOption == "0")
                 {
                     // quit game
+                    InfiniteLoop = false;
                 }
 
+                // GUESS COMPLETE WORD
                 if(turnOption == "1")
                 {
-                    AnswerCheck(gameData.Answer);
+                    bool winner = AnswerCheck(gameData.Answer);
+
+                    if(winner == true)
+                    {
+                        InfiniteLoop = false;
+                    }
                 }
 
+                // GUESS A LETTER
                 if(turnOption == "2")
                 {
+                    Console.WriteLine("Enter a letter to guess:");
                     string guessedChar = Console.ReadLine().ToUpper();
                     var guessedBefore = CheckIfCharGuessed(guessedChar[0], gameData.previousGuesses);
 
                     if(guessedBefore)
                     {
                         // tell player to choose a char that hasn't been guessed yet
+                        
                         Console.WriteLine();
                     }
                     else
@@ -102,14 +124,12 @@ namespace WheelOfFortune
                     }
 
                 }
-
-
-                // PLAYER CHOOSES TO GUESS A LETTER ----- OPTION 2
-                string playerCharGuess = Console.ReadLine();
             }
+
+            //Console.WriteLine("Hooray, you won!");
+            Console.WriteLine("Would you like to play agian? (y/n) \n");
+            string playAgain = Console.ReadLine();
+
         }
-
-
-
     }
 }
