@@ -111,6 +111,7 @@ namespace WheelOfFortune
             // each iteration is a turn
             while (InfiniteLoop == true)
             {
+                Console.Clear();
                 this.gameData.DisplayPlayerName(this.turn);
                 this.DisplayMoneyBags();
                 this.wheelRotations = this.wheel.PreSpinAnimation();
@@ -141,20 +142,25 @@ namespace WheelOfFortune
                 this.gameData.DisplayPlayerName(this.turn);
                 this.DisplayMoneyBags();
                 string turnOption = Console.ReadLine();
-              
+
 
                 // QUITS THE GAME
-               if (turnOption == "0")
+                if (String.IsNullOrEmpty(turnOption))
+                {
+                    Console.WriteLine("Trying to pass me some null input, eh?");
+                    continue;
+                }
+                else if (turnOption[0] == '0')
                 {
                     InfiniteLoop = false;
                 }
 
                 // GUESS COMPLETE WORD
-                else if(turnOption == "1")
+                else if (turnOption[0] == '1')
                 {
                     bool winner = AnswerCheck(gameData.Answer, gameData.winner);
 
-                    if(winner == true)
+                    if (winner == true)
                     {
                         gameData.winner = true;
                         InfiniteLoop = false;
@@ -162,33 +168,36 @@ namespace WheelOfFortune
                 }
 
                 // GUESS A LETTER
-                else if(turnOption == "2")
+                else if (turnOption[0] == '2')
                 {
                     Console.WriteLine("Enter a letter to guess:");
                     string guessedChar = Console.ReadLine().ToUpper();
 
-                    if(guessedChar.Length == 1 && Char.IsLetter(guessedChar[0]))
+                    if (guessedChar.Length == 1 && Char.IsLetter(guessedChar[0]))
                     {
                         bool guessedBefore = CheckIfCharGuessed(guessedChar[0], gameData.previousGuesses);
-                        if(guessedBefore)
+                        if (guessedBefore)
                         {
                             // tell player to choose a char that hasn't been guessed yet
                             Console.WriteLine("That letter has already been guessed \n");
+                            continue;
                         }
                         else
                         {
                             //ShowFoundLetters(guessedChar[0], gameData.Answer, gameData.AnswerUnder);
                             this.updatePlayerMoneyBags(this.turn, this.playerMoney, (uint)this.wheelRotations);
-                            Console.WriteLine("----->check");
                         }
-                    } else
+                    }
+                    else
                     {
                         Console.WriteLine("Please enter a vaild letter \n");
+                        continue;
                     }
                 }
                 else
                 {
                     Console.WriteLine("Please choose 0 1 or 2 only.");
+                    continue;
                 }
                 this.turn++;
                 if (this.turn == this.gameData.playerCount)
