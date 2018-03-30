@@ -7,31 +7,36 @@ using System.Media;
 
 namespace WheelOfFortune
 {
-    class WOFSound
+
+    public class WOFSound
     {
-        public void WOFChant()
+        static string fullPath = System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase;
+        static string dir = System.IO.Path.GetDirectoryName(fullPath).Substring(6);
+        static string soundsDir = dir + "\\Sounds";
+
+        public static void WOFChant()
         {
             var WOFPlayer = new System.Media.SoundPlayer();
-            WOFPlayer.SoundLocation = @"https://ccperalta-my.sharepoint.com/:u:/g/personal/brgi2317_cc_peralta_edu/EcFZNbWv5jNLrVMSh0m6d9kBeaVDb9jLn6_rfcGa31e13w?e=Qbf41G";
-            WOFPlayer.PlaySync();
+            WOFPlayer.SoundLocation = soundsDir + "\\WOF_Chant.wav";
+            Task.Run(() => WOFPlayer.PlaySync());
         }
-        public void WOFTheme()
+        public static void WOFTheme()
         {
             var WOFPlayer = new System.Media.SoundPlayer();
-            WOFPlayer.SoundLocation = @"https://ccperalta-my.sharepoint.com/:u:/g/personal/brgi2317_cc_peralta_edu/EestiFeYt81GsVygMI9arpwBPKEUmze4FUCHeTF-bh9xYQ?e=mO7aXp";
-            WOFPlayer.PlaySync();
+            WOFPlayer.SoundLocation = soundsDir + "\\WOF_Opening_Theme.wav";
+            Task.Run(() => WOFPlayer.PlaySync());
         }
-        public void WOFPuzzleReveal()
+        public static void WOFPuzzleReveal()
         {
             var WOFPlayer = new System.Media.SoundPlayer();
-            WOFPlayer.SoundLocation = @"https://ccperalta-my.sharepoint.com/:u:/g/personal/brgi2317_cc_peralta_edu/ESNnbSOJtdRCh-ZRysRdTW4BevdWlG4VqmO9jtyyVeYb1w?e=hSTAZf";
-            WOFPlayer.PlaySync();
+            WOFPlayer.SoundLocation = soundsDir + "\\PUZZLE-REVEAL.wav";
+            Task.Run(() => WOFPlayer.PlaySync());
         }
-        public void WOFWheelSpin()
+        public static void WOFWheelSpin()
         {
             var WOFPlayer = new System.Media.SoundPlayer();
-            WOFPlayer.SoundLocation = @"https://ccperalta-my.sharepoint.com/:u:/g/personal/brgi2317_cc_peralta_edu/EQUYOAB-pJxOs7Yq0Q0ztjwBp4Zty7CELe48rnd8VsibVQ?e=LdwG2r";
-            WOFPlayer.PlaySync();
+            WOFPlayer.SoundLocation = soundsDir + "\\wheel_spin.wav";
+            Task.Run(() => WOFPlayer.PlaySync());
         }
     }
 }

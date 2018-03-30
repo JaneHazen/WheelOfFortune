@@ -74,6 +74,7 @@ namespace WheelOfFortune
                 System.Threading.Thread.Sleep(50);
             }
             Console.WriteLine();
+            WheelOfFortune.WOFSound.WOFWheelSpin();
             return (PowerBar);
         }
         //DrawBar is a compartmentalization of functionality that resides in the PreSpinAnimation method.

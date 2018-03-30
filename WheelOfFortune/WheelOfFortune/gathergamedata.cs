@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading;
+using System.Threading.Tasks;
 public class GatherGameData
 {
     public string Answer { get; private set; }
     public List<char> AnswerUnder { get; set; }
     public string PlayerName { get; set; }
     public List<char> previousGuesses { get; set; }
-    int winner;
+    public bool winner;
 
     /// <summary>
     /// Gathers initial game data 
     /// </summary>
     public GatherGameData()
 	{
+
+        WheelOfFortune.WOFSound.WOFChant();
         GetPlayerName();
         Answer = "MICROSOFT IS AWESOME";
-        Console.WriteLine("Starting the game...");
         DisplayPlayerName();
         AnswerUnder = new List<char>();
         for (int i = 0; i < Answer.Length; i++)
@@ -26,6 +28,7 @@ public class GatherGameData
                 AnswerUnder.Add('_');
 
         previousGuesses = new List<char>();
+        winner = false;
     }
 
     /// <summary>
@@ -53,7 +56,7 @@ public class GatherGameData
     /// </summary>
     public void DisplayPlayerName()
     {
-      Console.WriteLine($"Player Name : {PlayerName}");
+      Console.WriteLine($"Player Name: {PlayerName} \n");
     }
 
     /// <summary>
@@ -61,6 +64,11 @@ public class GatherGameData
     /// </summary>
     public void DisplayUnderWordConsole()
     {
-        Console.WriteLine("Puzzle is: " + AnswerUnder);
+
+        Console.Write("Puzzle is: ");
+        foreach(char c in Answer)
+        {
+            Console.Write(c);
+        }
     }
 }
