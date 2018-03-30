@@ -12,7 +12,6 @@ namespace WheelOfFortune
     {
         static void Main(string[] args)
         {
-            
             GatherGameData Input = new GatherGameData();
             GameLoop Loop = new GameLoop(Input);
             Loop.GameplayLoop();

@@ -2,7 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Timers;
 
 namespace WheelOfFortune
@@ -95,7 +95,8 @@ namespace WheelOfFortune
                 Console.WriteLine("Word to guess: \n");
 
                 // Prints underscores for puzzle
-                foreach(char letter in gameData.AnswerUnder)
+                WheelOfFortune.WOFSound.WOFPuzzleReveal();
+                foreach (char letter in gameData.AnswerUnder)
                 {
                     Console.Write(letter);
                     Console.Write(" ");

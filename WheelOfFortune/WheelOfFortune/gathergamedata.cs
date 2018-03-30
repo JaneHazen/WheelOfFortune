@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Threading;
+using System.Threading.Tasks;
 public class GatherGameData
 {
     public string Answer { get; private set; }
@@ -14,6 +15,8 @@ public class GatherGameData
     /// </summary>
     public GatherGameData()
 	{
+
+        WheelOfFortune.WOFSound.WOFChant();
         GetPlayerName();
         Answer = "MICROSOFT IS AWESOME";
         DisplayPlayerName();

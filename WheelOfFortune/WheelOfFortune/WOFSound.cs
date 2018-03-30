@@ -18,25 +18,25 @@ namespace WheelOfFortune
         {
             var WOFPlayer = new System.Media.SoundPlayer();
             WOFPlayer.SoundLocation = soundsDir + "\\WOF_Chant.wav";
-            WOFPlayer.PlaySync();
+            Task.Run(() => WOFPlayer.PlaySync());
         }
         public static void WOFTheme()
         {
             var WOFPlayer = new System.Media.SoundPlayer();
             WOFPlayer.SoundLocation = soundsDir + "\\WOF_Opening_Theme.wav";
-            WOFPlayer.PlaySync();
+            Task.Run(() => WOFPlayer.PlaySync());
         }
         public static void WOFPuzzleReveal()
         {
             var WOFPlayer = new System.Media.SoundPlayer();
             WOFPlayer.SoundLocation = soundsDir + "\\PUZZLE-REVEAL.wav";
-            WOFPlayer.PlaySync();
+            Task.Run(() => WOFPlayer.PlaySync());
         }
         public static void WOFWheelSpin()
         {
             var WOFPlayer = new System.Media.SoundPlayer();
             WOFPlayer.SoundLocation = soundsDir + "\\wheel_spin.wav";
-            WOFPlayer.PlaySync();
+            Task.Run(() => WOFPlayer.PlaySync());
         }
     }
 }

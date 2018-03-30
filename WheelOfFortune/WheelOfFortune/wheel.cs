@@ -59,6 +59,7 @@ namespace WheelOfFortune
                 System.Threading.Thread.Sleep(50);
             }
             Console.WriteLine();
+            WheelOfFortune.WOFSound.WOFWheelSpin();
             return (PowerBar);
         }
         private int DrawBar(int power, bool direction)
