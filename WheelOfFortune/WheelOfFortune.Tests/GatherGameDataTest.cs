@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic; 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace WheelOfFortune.Tests
@@ -8,25 +9,38 @@ namespace WheelOfFortune.Tests
     public class TestGatherGameData
     {
         string Answer;
-        string AnswerUnder;
+        List<char> AnswerUnder;
         string DisplayAnswerUnder;
-        GatherGameData GameData;
         public void Init()
         {
-            Answer = "Microsoft is awesome";
-            AnswerUnder = new String('_', Answer.Length);
+            Answer = "MICROSOFT IS AWESOME";
+            AnswerUnder = new List<char>();
             DisplayAnswerUnder = "Puzzle is: " + AnswerUnder;
-            GameData = new GatherGameData();
+
+            foreach (char c in Answer)
+            {
+                if (c == ' ')
+                    AnswerUnder.Add(' ');
+                else
+                    AnswerUnder.Add('_');
+            }
+
+            var sr = new StringReader("Jupiter");
+            Console.SetIn(sr);
         }
 
         [TestMethod]
         public void TestGatherGameDataDefault()
         {
+            //arrange
             Init();
 
+            //act
             GatherGameData data = new GatherGameData();
 
-            Assert.AreEqual(data.Answer, Answer);
+            //assert
+            Assert.AreEqual(Answer, data.Answer);
+            Assert.AreEqual(AnswerUnder.ToString(), data.AnswerUnder.ToString());
         }
 
         [TestMethod]
@@ -62,8 +76,7 @@ namespace WheelOfFortune.Tests
         public void TestDisplayPlayerName()
         {
             //Arrange
-            var expectedOutput = "Please enter your name:\r\nStarting the game...\r\nPlayer Name : Jupiter\r\nPlayer Name : Jupiter\r\n";
-                //"Player Name : Jupiter\r\n";
+            var expectedOutput = "Please enter your name:\r\nPlayer Name: Jupiter \n\r\nPlayer Name: Jupiter \n\r\n";
             var sw = new StringWriter();
             Console.SetOut(sw);
             var sr = new StringReader("Jupiter");
@@ -81,12 +94,20 @@ namespace WheelOfFortune.Tests
 
         [TestMethod]
         public void TestDisplayUnderWordConsole()
-        {
+        {   
+            //arrange
             Init();
 
+            var expectedOut = "Please enter your name:\r\nPlayer Name: Jupiter \n\r\nPuzzle is: " + Answer;
+            var sw = new StringWriter();
+            Console.SetOut(sw);
             GatherGameData data = new GatherGameData();
 
+            //act
             data.DisplayUnderWordConsole();
+
+            //assert
+            Assert.AreEqual(expectedOut, sw.ToString());
         }
 
 
