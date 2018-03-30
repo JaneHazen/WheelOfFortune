@@ -107,12 +107,6 @@ namespace WheelOfFortune
                 Console.WriteLine(" 0 to quit the game \n 1 to solve the puzzle \n 2 guess a letter \n\n");
                 string turnOption = Console.ReadLine();
               
-        
-
-                if(turnOption != "0" || turnOption != "1" || turnOption != "2")
-                {
-                    Console.WriteLine("Please enter a valid option");
-                }
 
                 // QUITS THE GAME
                if (turnOption == "0")
@@ -121,7 +115,7 @@ namespace WheelOfFortune
                 }
 
                 // GUESS COMPLETE WORD
-                if(turnOption == "1")
+                else if(turnOption == "1")
                 {
                     bool winner = AnswerCheck(gameData.Answer, gameData.winner);
 
@@ -133,7 +127,7 @@ namespace WheelOfFortune
                 }
 
                 // GUESS A LETTER
-                if(turnOption == "2")
+                else if(turnOption == "2")
                 {
                     Console.WriteLine("Enter a letter to guess:");
                     string guessedChar = Console.ReadLine().ToUpper();
