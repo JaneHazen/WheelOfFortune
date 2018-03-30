@@ -12,10 +12,14 @@ namespace WheelOfFortune
         GatherGameData gameData;
         Wheel          wheel;
         int            wheelRotations;
+        int            turn;
+        uint[]         playerMoney;
         public GameLoop(GatherGameData Input)
         {
+            this.turn = 0;
             gameData = Input;
             wheel = new Wheel(25);
+            playerMoney = new uint[gameData.playerCount];
         }
 
         // waits 3 seconds before closing the terminal
@@ -39,8 +43,8 @@ namespace WheelOfFortune
             // checks if letter has already been guessed
             bool check = previousGuesses.Contains(guessedChar);
             // adds letter to list of guesses
-            previousGuesses.Add(guessedChar);
-
+            if (check == false)
+                previousGuesses.Add(guessedChar);
             return check;
         }
 
@@ -51,15 +55,15 @@ namespace WheelOfFortune
             // iterate through answer to see if char is included
             for (int i = 0; i < answer.Length; i++)
             {
-                if (answer[i] == guessedChar)
-                {
-                    characterCount++;
-                    //replace letter 
-                    underscoreTemplate[i] = guessedChar;
-                    //remember to verify that guessedChar has upcase 
-                }
+                if (answer[i] == ' ')
+                    continue;
+                else if (this.gameData.previousGuesses.Contains(Char.ToLower(answer[i])))
+                    Console.Write(answer[i]);
+                else if (this.gameData.previousGuesses.Contains(Char.ToUpper(answer[i])))
+                    Console.Write(answer[i]);
+                else
+                    Console.Write('_');
             }
-
             // Display the appropriate string based off the characterCount
             if(characterCount > 0)
                 Console.WriteLine($"There is/are {characterCount} letter {guessedChar} in the puzzle \n");
@@ -68,7 +72,6 @@ namespace WheelOfFortune
 
             return underscoreTemplate;
         }
-
         public bool AnswerCheck(string answer, bool winner)
         {
             Console.WriteLine("To solve the puzzle, type your answer and press enter:");
@@ -80,15 +83,36 @@ namespace WheelOfFortune
             //Give user the choices again (0 quit, 1 solve, 2 spin);
             return false;
         }
+        //updatePlayerMoneyBags(this.turn, this.playerMoney, this.wheelRotations);
+        public void updatePlayerMoneyBags(int turn, uint[] playerArray, uint quantity)
+        {
+            playerArray[turn] += quantity * 100;
+            Console.WriteLine("\nDude!!!!!!!!!!!!!!!!...");
+            System.Threading.Thread.Sleep(1000);
+            Console.WriteLine("..." + this.gameData.playerNames[turn] + " just won...");
+            System.Threading.Thread.Sleep(1000);
+            Console.WriteLine("...like...");
+            System.Threading.Thread.Sleep(1000);
+            Console.WriteLine((quantity * 100) + " dollars!!!!!!!");
+            System.Threading.Thread.Sleep(1000);
+            Console.Clear();
 
+        }
+        public void DisplayMoneyBags()
+        {
+            Console.Write("Winnings: ");
+            Console.Write(this.playerMoney[this.turn]);
+            Console.WriteLine();
+        }
         // MAIN GAMEPLAY LOOP
         public void GameplayLoop()
         {
             bool InfiniteLoop = true;
-
             // each iteration is a turn
             while (InfiniteLoop == true)
             {
+                this.gameData.DisplayPlayerName(this.turn);
+                this.DisplayMoneyBags();
                 this.wheelRotations = this.wheel.PreSpinAnimation();
                 this.wheel.SpinAnimation(this.wheelRotations);
                 Console.WriteLine("######################################################################\n");
@@ -96,16 +120,26 @@ namespace WheelOfFortune
 
                 // Prints underscores for puzzle
                 WheelOfFortune.WOFSound.WOFPuzzleReveal();
-                foreach (char letter in gameData.AnswerUnder)
+                int x = -1;
+                while (++x < this.gameData.Answer.Length)
                 {
-                    Console.Write(letter);
-                    Console.Write(" ");
+                    if (this.gameData.Answer[x] == ' ')
+                        Console.Write(' ');
+                    else if (this.gameData.previousGuesses.Contains(Char.ToLower(this.gameData.Answer[x])))
+                        Console.Write(this.gameData.Answer[x]);
+                    else if (this.gameData.previousGuesses.Contains(Char.ToUpper(this.gameData.Answer[x])))
+                        Console.Write(this.gameData.Answer[x]);
+                    else
+                        Console.Write('_');
+                    Console.Write(' ');
                 }
-                Console.WriteLine("\n");
+                Console.WriteLine();
 
                 // Displey options for turn
                 Console.WriteLine("");
                 Console.WriteLine(" 0 to quit the game \n 1 to solve the puzzle \n 2 guess a letter \n\n");
+                this.gameData.DisplayPlayerName(this.turn);
+                this.DisplayMoneyBags();
                 string turnOption = Console.ReadLine();
               
 
@@ -133,10 +167,9 @@ namespace WheelOfFortune
                     Console.WriteLine("Enter a letter to guess:");
                     string guessedChar = Console.ReadLine().ToUpper();
 
-                    if(guessedChar.Length == 1 || Char.IsLetter(guessedChar[0]))
+                    if(guessedChar.Length == 1 && Char.IsLetter(guessedChar[0]))
                     {
-                        var guessedBefore = CheckIfCharGuessed(guessedChar[0], gameData.previousGuesses);
-
+                        bool guessedBefore = CheckIfCharGuessed(guessedChar[0], gameData.previousGuesses);
                         if(guessedBefore)
                         {
                             // tell player to choose a char that hasn't been guessed yet
@@ -144,7 +177,9 @@ namespace WheelOfFortune
                         }
                         else
                         {
-                            ShowFoundLetters(guessedChar[0], gameData.Answer, gameData.AnswerUnder);
+                            //ShowFoundLetters(guessedChar[0], gameData.Answer, gameData.AnswerUnder);
+                            this.updatePlayerMoneyBags(this.turn, this.playerMoney, (uint)this.wheelRotations);
+                            Console.WriteLine("----->check");
                         }
                     } else
                     {
@@ -155,6 +190,10 @@ namespace WheelOfFortune
                 {
                     Console.WriteLine("Please choose 0 1 or 2 only.");
                 }
+                this.turn++;
+                if (this.turn == this.gameData.playerCount)
+                    this.turn = 0;
+                Console.Clear();
             }
 
             if(gameData.winner == true)
